@@ -1,3 +1,4 @@
+import { actionTypes, FetchGamesAction } from '../actions/gameActions';
 
 export interface GamesState {
     popular: object[],
@@ -6,6 +7,7 @@ export interface GamesState {
     searched: object[]
 }
 
+
 const initialState = {
      popular: [],
      upcoming: [],
@@ -13,13 +15,11 @@ const initialState = {
      searched: []
 }
 
-type GamesAction = {
-    type: string,
-    payload: []
-}
 
-const gamesReducer = (state: GamesState = initialState, action: GamesAction) => {
+const gamesReducer = (state: GamesState = initialState, action: FetchGamesAction) => {
     switch (action.type) {
+        case actionTypes.fetchGames:
+            return { ...state, popular: action.payload.popular, upcoming: action.payload.upcoming, newGames: action.payload.newGames };
         default:
             return state;
     }
