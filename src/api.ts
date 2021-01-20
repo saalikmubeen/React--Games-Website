@@ -36,5 +36,6 @@ const nextYear = getCurrentDate(currentYear + 1, currentMonth, currentDay);
 export const getPopularGamesURL = () => `${base_url}games?dates=${previousYear},${currentDate}&ordering=-rating&page_size=10`;
 export const getUpcomingGamesURL = () => `${base_url}games?dates=${currentDate},${nextYear}&ordering=-added&page_size=10`;
 export const getNewGamesURL = () => `${base_url}games?dates=${previousYear},${currentDate}&ordering=-released&page_size=10`;
-
+export const getGameDetailURL = (id: number) => `${base_url}games/${id}`;
+export const getGameScreenshotsURL = (id: number) => `${base_url}games/${id}/screenshots`; 
 

@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
+import { actionTypes } from './types';
 import { getNewGamesURL, getPopularGamesURL, getUpcomingGamesURL } from '../api';
 
-export enum actionTypes {
-    fetchGames
-}
 
 export type Game = {
     name: string,
@@ -13,6 +11,7 @@ export type Game = {
     rating: number,
     released: number
 }
+
 
 export type FetchGamesAction = {
     type: actionTypes,
@@ -40,4 +39,3 @@ export const fetchGames = () => {
         })
     }
 };
-

@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { fetchGameDetails } from '../actions/gameDetailsAction';
 
 
 interface GameCardProps {
@@ -13,9 +15,15 @@ interface GameCardProps {
 }
 
 const GameCard = (props: GameCardProps): JSX.Element => {
+    const dispatch = useDispatch();
     const game = props.game;
+
+    const handleClick = () => {
+        dispatch(fetchGameDetails(game.id));
+    }
+
     return (
-        <Card>
+        <Card onClick={handleClick}>
             <h3>{game.name}</h3>
             <p>{game.released}</p>
             <img src={game.background_image} alt={ game.name}/>

@@ -1,15 +1,13 @@
 import React, {useEffect} from 'react'
-import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { useTypedSelector} from '../reducers';
 import { fetchGames } from '../actions/gameActions';
-import { AppState } from '../reducers';
 import GameCard from '../components/GameCard';
 
 
 const HomePage = (): JSX.Element => {
     const dispatch = useDispatch();
-    
-    const useTypedSelector: TypedUseSelectorHook<AppState> = useSelector;
 
     const {popular, upcoming, newGames} = useTypedSelector((state) => state.games);
 
