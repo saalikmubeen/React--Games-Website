@@ -1,15 +1,24 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTypedSelector } from '../reducers';
 
 const GameDetails = (): JSX.Element => {
+    const history = useHistory();
 
     const { name, isLoading, released, description_raw, background_image, rating, platforms, screenshots } = useTypedSelector((state) => state.gameDetails);
+
+
+    const handleClick = () => {
+        history.push("/");
+    }
+
     return (
         <>
         {!isLoading && 
-            <Shadow>
+            <Shadow className="shadow">
 
+                <Exit onClick={handleClick}>&times;</Exit>
                 <Details>
                 
                     <Stats>
@@ -78,6 +87,17 @@ const Shadow = styled.div`
     }
 `
 
+const Exit = styled.span`
+    position: fixed;
+    top: 0;
+    right: 2rem;
+    font-size: 6rem;
+    cursor: pointer;
+    color: #b3e6f5;
+    
+
+`
+
 const Details = styled.div`
     width: 80%;
     background: white;
@@ -85,6 +105,7 @@ const Details = styled.div`
     position: absolute;
     left: 10%;
     padding: 2rem 7rem;
+    z-index: 10;
 
     img{ 
         width: 100%;
