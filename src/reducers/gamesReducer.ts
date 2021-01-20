@@ -1,10 +1,11 @@
-import { actionTypes, FetchGamesAction } from '../actions/gameActions';
+import { actionTypes, FetchGamesAction, Game } from '../actions/gameActions';
+
 
 export interface GamesState {
-    popular: object[],
-    upcoming: object[],
-    newGames: object[],
-    searched: object[]
+    popular: Game[],
+    upcoming: Game[],
+    newGames: Game[],
+    searched: Game[]
 }
 
 

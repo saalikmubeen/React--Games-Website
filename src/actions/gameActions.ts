@@ -6,12 +6,20 @@ export enum actionTypes {
     fetchGames
 }
 
+export type Game = {
+    name: string,
+    id: number,
+    background_image: string,
+    rating: number,
+    released: number
+}
+
 export type FetchGamesAction = {
     type: actionTypes,
     payload: {
-         popular: object[],
-         upcoming: object[],
-         newGames: object[]
+         popular: Game[],
+         upcoming: Game[],
+         newGames: Game[]
     }
 }
 
