@@ -4,49 +4,53 @@ import { useTypedSelector } from '../reducers';
 
 const GameDetails = (): JSX.Element => {
 
-    const { name, released, description_raw, background_image, rating, platforms, screenshots } = useTypedSelector((state) => state.gameDetails);
+    const { name, isLoading, released, description_raw, background_image, rating, platforms, screenshots } = useTypedSelector((state) => state.gameDetails);
     return (
-        <Shadow>
+        <>
+        {!isLoading && 
+            <Shadow>
 
-            <Details>
+                <Details>
                 
-                <Stats>
+                    <Stats>
                     
-                <div className="rating">
-                    <h3>{name}</h3>
-                    <h5>{released}</h5>
-                    <p>Rating: {rating}</p>
-                </div>
+                        <div className="rating">
+                            <h3>{name}</h3>
+                            <h5>{released}</h5>
+                            <p>Rating: {rating}</p>
+                        </div>
                     
-                <div className="game-platforms">
-                    <h3>Platforms</h3>
-                    <div>       
-                        {platforms.map((platform) => (
-                        // <img alt={platform.platform.name} key={platform.platform.id} src={platform.platform.image_background} />
-                            <h3>{ platform.platform.name}</h3>
+                        <Platforms>
+                            <h3>Platforms</h3>
+                            <div>
+                                {platforms.map((platform) => (
+                                    // <img alt={platform.platform.name} key={platform.platform.id} src={platform.platform.image_background} />
+                                    <h3 key={platform.platform.id}>{platform.platform.name}</h3>
+                                ))}
+                            </div>
+                        </Platforms>
+                    
+                    </Stats>
+                
+                    <Media>
+                        <img src={background_image} alt={background_image} />
+                    </Media>
+                
+                    <Description>
+                        <p>{description_raw}</p>
+                    </Description>
+                
+                    <Gallery>
+                        {screenshots.map((screenshot) => (
+                            <img src={screenshot.image} key={screenshot.id} alt={screenshot.image} />
                         ))}
-                    </div>
-                </div>
-                    
-                </Stats>
+                    </Gallery>
                 
-                <div className="game-screenshots">
-                    <img src={background_image} alt={background_image} />
-                </div>
-                
-                <Description>
-                    <p>{description_raw}</p>
-                </Description>
-                
-            <Gallery>
-                {screenshots.map((screenshot) => (
-                    <img src={screenshot.image} key={screenshot.id} alt={screenshot.image} />
-                ))}
-            </Gallery>
-                
-            </Details>
-            
-        </Shadow>
+                </Details>
+
+            </Shadow>
+            }
+        </>    
     )
 }
 
@@ -80,7 +84,7 @@ const Details = styled.div`
     border-radius: 1rem;
     position: absolute;
     left: 10%;
-    padding: 2rem 20rem;
+    padding: 2rem 7rem;
 
     img{ 
         width: 100%;
@@ -88,11 +92,37 @@ const Details = styled.div`
 `
 
 const Stats = styled.div`
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `
 
-const Gallery = styled.div``
+const Platforms = styled.div`
+    text-align: center;
 
-const Description = styled.div``
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+`
+
+const Media = styled.div`
+    margin-top: 5rem;
+
+    img{
+        width: 100%;    
+    }
+`
+
+const Gallery = styled.div`
+    img{
+        margin: 5rem 0;
+    }
+`
+
+const Description = styled.div`
+     margin: 5rem 0rem;
+`
 
 export default GameDetails;

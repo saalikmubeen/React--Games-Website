@@ -1,4 +1,5 @@
 export enum actionTypes {
     fetchGames,
-    fetchGameDetails
+    fetchGameDetails,
+    loadingGameDetails
 }

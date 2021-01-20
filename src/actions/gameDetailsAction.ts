@@ -24,7 +24,8 @@ export interface GameDetails {
     background_image: string,
     rating: number,
     platforms: Platform[],
-    screenshots: Screenshot[]
+    screenshots: Screenshot[],
+    isLoading: boolean
 }
 
 
@@ -36,6 +37,10 @@ export type FetchGameDetailsAction = {
 
 export const fetchGameDetails = (id: number) => {
     return async function (dispatch: Dispatch) {
+
+        dispatch({
+            type: actionTypes.loadingGameDetails
+        })
 
         const response = await axios.get(getGameDetailURL(id));
         const screenshots = await axios.get(getGameScreenshotsURL(id));

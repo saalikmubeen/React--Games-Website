@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { fetchGameDetails } from '../actions/gameDetailsAction';
@@ -16,10 +17,12 @@ interface GameCardProps {
 
 const GameCard = (props: GameCardProps): JSX.Element => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const game = props.game;
 
     const handleClick = () => {
         dispatch(fetchGameDetails(game.id));
+        history.push(`/games/${game.id}`);
     }
 
     return (

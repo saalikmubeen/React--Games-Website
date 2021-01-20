@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTypedSelector} from '../reducers';
 import { fetchGames } from '../actions/gameActions';
@@ -9,6 +10,10 @@ import GameDetails from '../components/GameDetails';
 
 const HomePage = (): JSX.Element => {
     const dispatch = useDispatch();
+    const { pathname } = useLocation();
+
+    const pathId = pathname.split("/")[2];
+
 
     const {popular, upcoming, newGames} = useTypedSelector((state) => state.games);
 
@@ -21,21 +26,21 @@ const HomePage = (): JSX.Element => {
 
     return (
         <>
-        <GameDetails/>
+        {pathId && <GameDetails/>}
         <GamesList>
             <h2>Popular games</h2>
             <Game>
-                {popular.map((game) => <GameCard game={game} />)}
+                    {popular.map((game) => <GameCard game={game} key={game.id} />)}
             </Game>    
             
             <h2>Upcoming Games</h2>
             <Game>
-                {upcoming.map((game) => <GameCard game={game} />)}
+                {upcoming.map((game) => <GameCard game={game} key={game.id} />)}
             </Game>
 
             <h2>New Games</h2>
             <Game>
-                {newGames.map((game) => <GameCard game={game} />)}
+                {newGames.map((game) => <GameCard game={game} key={game.id} />)}
             </Game>    
         </GamesList>
         </>    
