@@ -22,17 +22,17 @@ const HomePage = (): JSX.Element => {
 
     return (
         <GamesList>
-            <h1>Popular games</h1>
+            <h2>Popular games</h2>
             <Game>
                 {popular.map((game) => <GameCard game={game} />)}
             </Game>    
             
-            <h1>Upcoming Games</h1>
+            <h2>Upcoming Games</h2>
             <Game>
                 {upcoming.map((game) => <GameCard game={game} />)}
             </Game>
 
-            <h1>New Games</h1>
+            <h2>New Games</h2>
             <Game>
                 {newGames.map((game) => <GameCard game={game} />)}
             </Game>    
@@ -44,7 +44,7 @@ const HomePage = (): JSX.Element => {
 const GamesList = styled.div`
     padding: 0 5rem; 
 
-    h1{
+    h2{
         padding: 5rem 0;
     }
 `;

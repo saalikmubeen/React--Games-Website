@@ -32,6 +32,10 @@ const Card = styled.div`
     text-align: center;
     cursor: pointer;
 
+    p{
+        margin-bottom: .8rem;
+    }
+
     img{
         width: 100%;
         height: 40vh;
