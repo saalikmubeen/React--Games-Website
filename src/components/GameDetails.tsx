@@ -3,6 +3,33 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTypedSelector } from '../reducers';
 
+// images
+import playStation from "../images/playstation.svg";
+import steam from "../images/steam.svg";
+import xbox from "../images/xbox.svg";
+import nintendo from "../images/nintendo.svg";
+import apple from "../images/apple.svg";
+import gamepad from "../images/gamepad.svg";
+
+
+const getPlatform = (platform: string) => {
+    switch (platform) {
+        case "PlayStation 4":
+            return playStation;
+        case "Xbox One":
+            return xbox;
+        case "PC":
+            return steam;
+        case "Nintendo Switch":
+            return nintendo;
+        case "iOS":
+            return apple;
+        default:
+            return gamepad;
+    }
+  };
+
+
 const GameDetails = (): JSX.Element => {
     const history = useHistory();
 
@@ -25,7 +52,7 @@ const GameDetails = (): JSX.Element => {
                     
                         <div className="rating">
                             <h3>{name}</h3>
-                            <h5>{released}</h5>
+                            <h4>{released}</h4>
                             <p>Rating: {rating}</p>
                         </div>
                     
@@ -33,8 +60,7 @@ const GameDetails = (): JSX.Element => {
                             <h3>Platforms</h3>
                             <div>
                                 {platforms.map((platform) => (
-                                    // <img alt={platform.platform.name} key={platform.platform.id} src={platform.platform.image_background} />
-                                    <h3 key={platform.platform.id}>{platform.platform.name}</h3>
+                                    <img src={getPlatform(platform.platform.name)} alt={platform.platform.name} key={platform.platform.id}  />
                                 ))}
                             </div>
                         </Platforms>
@@ -125,6 +151,10 @@ const Platforms = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-evenly;
+
+        img {
+            margin-left: 3rem;
+        }
     }
 `
 
