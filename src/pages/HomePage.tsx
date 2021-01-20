@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useTypedSelector} from '../reducers';
 import { fetchGames } from '../actions/gameActions';
 import GameCard from '../components/GameCard';
+import GameDetails from '../components/GameDetails';
 
 
 const HomePage = (): JSX.Element => {
@@ -19,6 +20,8 @@ const HomePage = (): JSX.Element => {
     }, [dispatch])
 
     return (
+        <>
+        <GameDetails/>
         <GamesList>
             <h2>Popular games</h2>
             <Game>
@@ -35,6 +38,7 @@ const HomePage = (): JSX.Element => {
                 {newGames.map((game) => <GameCard game={game} />)}
             </Game>    
         </GamesList>
+        </>    
     )
 }
 

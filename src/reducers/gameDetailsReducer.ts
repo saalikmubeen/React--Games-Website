@@ -4,10 +4,11 @@ import {actionTypes } from '../actions/types';
 const initialState = {
     id: 0,
     name: '',
-    description: '',
+    description_raw: '',
     released: '',
     background_image: '',
     rating: 0,
+    platforms: [],
     screenshots: []
 }
 

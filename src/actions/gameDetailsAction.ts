@@ -8,13 +8,22 @@ export interface Screenshot{
     image: string;
 }
 
+export interface Platform {
+    platform: {
+        id: number,
+        name: string,
+        image_background: string
+    }
+}
+
 export interface GameDetails {
     id: number,
     name: string,
-    description: string,
+    description_raw: string,
     released: string,
     background_image: string,
     rating: number,
+    platforms: Platform[],
     screenshots: Screenshot[]
 }
 
