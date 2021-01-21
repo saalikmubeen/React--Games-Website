@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTypedSelector } from '../reducers';
+import Rating from './Rating';
 
 // images
 import playStation from "../images/playstation.svg";
@@ -50,10 +51,11 @@ const GameDetails = (): JSX.Element => {
                 
                     <Stats>
                     
-                        <div className="rating">
+                        <div>
                             <h3>{name}</h3>
                             <h4>{released}</h4>
-                            <p>Rating: {rating}</p>
+                            <Rating rating={rating} />
+                            <span>({rating})</span>
                         </div>
                     
                         <Platforms>
@@ -142,6 +144,10 @@ const Stats = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    div span {
+        margin-left: 5px;
+    }
 `
 
 const Platforms = styled.div`

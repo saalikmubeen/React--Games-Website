@@ -38,20 +38,33 @@ const HomePage = (): JSX.Element => {
             </>        
                 }        
                 
+                {popular.length > 0 &&
+            <>        
             <h2>Popular games</h2>
             <Game>
                     {popular.map((game) => <GameCard game={game} key={game.id} />)}
-            </Game>    
+            </Game>
+            </>            
+                }        
             
+                {upcoming.length > 0 &&
+            <>
             <h2>Upcoming Games</h2>
             <Game>
                 {upcoming.map((game) => <GameCard game={game} key={game.id} />)}
             </Game>
+            </>
+                }        
 
+                {newGames.length > 0 &&
+            <>        
             <h2>New Games</h2>
             <Game>
                 {newGames.map((game) => <GameCard game={game} key={game.id} />)}
             </Game>    
+            </>
+                }
+                
         </GamesList>
         </>    
     )
