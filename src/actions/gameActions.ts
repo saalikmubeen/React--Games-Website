@@ -14,7 +14,7 @@ export type Game = {
 
 
 export type FetchGamesAction = {
-    type: actionTypes,
+    type: actionTypes.fetchGames,
     payload: {
          popular: Game[],
          upcoming: Game[],
