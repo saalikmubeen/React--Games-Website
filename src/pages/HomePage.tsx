@@ -15,7 +15,7 @@ const HomePage = (): JSX.Element => {
     const pathId = pathname.split("/")[2];
 
 
-    const {popular, upcoming, newGames} = useTypedSelector((state) => state.games);
+    const {popular, upcoming, newGames, searched} = useTypedSelector((state) => state.games);
 
 
     useEffect(() => {
@@ -28,6 +28,16 @@ const HomePage = (): JSX.Element => {
         <>
         {pathId && <GameDetails/>}
         <GamesList>
+
+                {searched.length > 0 && 
+            <>
+            <h2>Search Results...</h2>
+            <Game>
+                    {searched.map((game) => <GameCard game={game} key={game.id} />)}
+            </Game>
+            </>        
+                }        
+                
             <h2>Popular games</h2>
             <Game>
                     {popular.map((game) => <GameCard game={game} key={game.id} />)}

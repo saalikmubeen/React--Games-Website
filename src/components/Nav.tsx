@@ -1,18 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import logo from '../images/logo.svg';
+import { searchGames, clearSearch } from '../actions/searchGamesAction';
 
 const Nav = (): JSX.Element => {
+    const [name, setName] = useState<string>('');
+    const dispatch = useDispatch();
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        dispatch(searchGames(name));
+
+        setName('');
+    }
+
+    const handleClick = () => {
+        dispatch(clearSearch());
+    }
+
     return (
         <StyledNav>
             
-            <Logo>
+            <Logo onClick={handleClick}>
                 <img src={logo} alt="logo"/>
                 <h1>Ignite</h1>
             </Logo>
 
-            <Search>
-                <input type="text" placeholder="search...." />
+            <Search onSubmit={handleSubmit}>
+                <input type="text" placeholder="search...." value={name} onChange={ (e) => setName(e.target.value) }/>
                 <button>Search</button>
             </Search>
 
@@ -45,7 +62,7 @@ const Logo = styled.div`
     }
 `
 
-const Search = styled.div`
+const Search = styled.form`
     width: 50%;
     display: flex;
     flex-direction: column;

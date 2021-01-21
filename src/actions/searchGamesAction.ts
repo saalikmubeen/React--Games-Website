@@ -11,6 +11,13 @@ export type SearchGamesAction = {
     }
 }
 
+export type ClearSearchAction = {
+    type: actionTypes.clearSearchResults,
+    payload: {
+        searched: []
+    }
+}
+
 export const searchGames = (game_name: string) => {
     return async function (dispatch: Dispatch) {
         
@@ -23,5 +30,15 @@ export const searchGames = (game_name: string) => {
             }
         })
 
+    }
+}
+
+
+export const clearSearch = () => {
+    return {
+        type: actionTypes.clearSearchResults,
+        payload: {
+            searched: []
+        }
     }
 }
