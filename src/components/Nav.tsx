@@ -11,6 +11,16 @@ const NavVariants = {
 }
 
 
+const ButtonVariants = {
+    hover: {
+        scale: 1.07,
+        boxShadow: "0px 0px 13px  #ff7676",
+        textShadow: "0px 0px 13px #fff",
+        transition: {duration: 0.5}
+    }
+}
+
+
 const Nav = (): JSX.Element => {
     const [name, setName] = useState<string>('');
     const dispatch = useDispatch();
@@ -30,14 +40,14 @@ const Nav = (): JSX.Element => {
     return (
         <StyledNav variants={NavVariants} initial="hidden" animate="visible">
             
-            <Logo onClick={handleClick}>
-                <img src={logo} alt="logo"/>
+            <Logo onClick={handleClick} whileHover={{ scale: 1.2 }} transition={{duration: 0.5}}>
+                <img src={logo} alt="logo" />
                 <h1>Ignite</h1>
             </Logo>
 
             <Search onSubmit={handleSubmit}>
                 <input type="text" placeholder="search...." value={name} onChange={ (e) => setName(e.target.value) }/>
-                <button>Search</button>
+                <motion.button variants={ButtonVariants} whileHover="hover">Search</motion.button>
             </Search>
 
         </StyledNav>
@@ -55,7 +65,7 @@ const StyledNav = styled(motion.nav)`
 `;
 
 
-const Logo = styled.div`
+const Logo = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: center;

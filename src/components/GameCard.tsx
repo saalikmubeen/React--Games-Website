@@ -32,6 +32,7 @@ const GameCard = (props: GameCardProps): JSX.Element => {
     const history = useHistory();
     const game = props.game;
 
+
     const handleClick = () => {
         dispatch(fetchGameDetails(game.id));
         history.push(`/games/${game.id}`);

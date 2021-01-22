@@ -14,6 +14,19 @@ import apple from "../images/apple.svg";
 import gamepad from "../images/gamepad.svg";
 
 
+
+const fadeVariants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.75, staggerChildren: 0.5, when: "beforeChildren" } }
+}
+
+
+const platformVariants = {
+    hidden: { opacity: 0, y: -400 },
+    visible: { opacity: 1, y: 0 }
+}
+
+
 const getPlatform = (platform: string) => {
     switch (platform) {
         case "PlayStation 4":
@@ -39,6 +52,7 @@ interface GameDetailsProps {
 
 const GameDetails: React.FC<GameDetailsProps> = (props): JSX.Element => {
     const history = useHistory();
+
 
     const { name, isLoading, released, description_raw, background_image, rating, platforms, screenshots } = useTypedSelector((state) => state.gameDetails);
 
@@ -66,11 +80,11 @@ const GameDetails: React.FC<GameDetailsProps> = (props): JSX.Element => {
                     
                         <Platforms>
                             <h3>Platforms</h3>
-                            <div>
+                            <motion.div variants={fadeVariants} initial="hidden" animate="visible">
                                 {platforms.map((platform) => (
-                                    <img src={getPlatform(platform.platform.name)} alt={platform.platform.name} key={platform.platform.id}  />
+                                    <motion.img src={getPlatform(platform.platform.name)} alt={platform.platform.name} key={platform.platform.id} variants={platformVariants} />
                                 ))}
-                            </div>
+                            </motion.div>
                         </Platforms>
                     
                     </Stats>
