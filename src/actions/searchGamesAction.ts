@@ -18,8 +18,15 @@ export type ClearSearchAction = {
     }
 }
 
+export type LoadingSearchedGamesAction = {
+    type: actionTypes.loadingSearchedGames
+}
+
+
 export const searchGames = (game_name: string) => {
     return async function (dispatch: Dispatch) {
+
+        dispatch<LoadingSearchedGamesAction>({ type: actionTypes.loadingSearchedGames });
         
         const response = await axios.get(getSearchedGamesURL(game_name));
 

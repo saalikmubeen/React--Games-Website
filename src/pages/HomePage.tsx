@@ -7,6 +7,7 @@ import { useTypedSelector} from '../reducers';
 import { fetchGames } from '../actions/gameActions';
 import GameCard from '../components/GameCard';
 import GameDetails from '../components/GameDetails';
+import Loader from '../components/Loader';
 
 import { useScroll } from '../useScroll';
 
@@ -27,7 +28,7 @@ const HomePage = (): JSX.Element => {
     const {element: element2, controls: controls2} = useScroll()
     
 
-    const { popular, upcoming, newGames, searched } = useTypedSelector((state) => state.games);
+    const { popular, upcoming, newGames, searched, loadingSearchedGames, loadingGames } = useTypedSelector((state) => state.games);
 
 
     useEffect(() => {
@@ -41,16 +42,17 @@ const HomePage = (): JSX.Element => {
              <AnimateSharedLayout type="crossfade"> 
                 <AnimatePresence> {pathId && <GameDetails pathId={ pathId }/>}</AnimatePresence>
 
-                {searched.length > 0 && 
+                 {loadingSearchedGames && <Loader/>} 
+                {searched.length > 0  &&  
             <>
-            <motion.h2 variants={titleVariants} initial="hidden" animate="visible" exit="exit">Search Results...</motion.h2>
+            <motion.h2 variants={titleVariants} initial="hidden" animate="visible" exit="exit">Search Results...</motion.h2>       
             <Game>
                     {searched.map((game) => <GameCard game={game} key={game.id} />)}
             </Game>
             </>        
                 }        
                 
-                {popular.length > 0 &&
+                {loadingGames ? <Loader/> :
             <>        
             <motion.h2 variants={titleVariants} initial="hidden" animate="visible" exit="exit">Popular games</motion.h2>
             <Game>

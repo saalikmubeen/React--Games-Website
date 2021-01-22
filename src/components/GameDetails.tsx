@@ -63,50 +63,49 @@ const GameDetails: React.FC<GameDetailsProps> = (props): JSX.Element => {
 
     return (
         <>
-        {!isLoading && 
             <Shadow className="shadow" >
 
                 <Exit onClick={handleClick}>&times;</Exit>
-                <Details layoutId={props.pathId}>
+                {!isLoading &&
+                    <Details layoutId={props.pathId}>
                 
-                    <Stats>
+                        <Stats>
                     
-                        <div>
-                            <motion.h3 layoutId={`title ${props.pathId}`}>{name}</motion.h3>
-                            <motion.h4 layoutId={`released ${props.pathId}`}>{released}</motion.h4>
-                            <Rating rating={rating} />
-                            <span>({rating})</span>
-                        </div>
+                            <div>
+                                <motion.h3 layoutId={`title ${props.pathId}`}>{name}</motion.h3>
+                                <motion.h4 layoutId={`released ${props.pathId}`}>{released}</motion.h4>
+                                <Rating rating={rating} />
+                                <span>({rating})</span>
+                            </div>
                     
-                        <Platforms>
-                            <h3>Platforms</h3>
-                            <motion.div variants={fadeVariants} initial="hidden" animate="visible">
-                                {platforms.map((platform) => (
-                                    <motion.img src={getPlatform(platform.platform.name)} alt={platform.platform.name} key={platform.platform.id} variants={platformVariants} />
-                                ))}
-                            </motion.div>
-                        </Platforms>
+                            <Platforms>
+                                <h3>Platforms</h3>
+                                <motion.div variants={fadeVariants} initial="hidden" animate="visible">
+                                    {platforms.map((platform) => (
+                                        <motion.img src={getPlatform(platform.platform.name)} alt={platform.platform.name} key={platform.platform.id} variants={platformVariants} />
+                                    ))}
+                                </motion.div>
+                            </Platforms>
                     
-                    </Stats>
+                        </Stats>
                 
-                    <Media>
-                        <motion.img src={background_image} alt={background_image} layoutId={ `image ${props.pathId}`}/>
-                    </Media>
+                        <Media>
+                            <motion.img src={background_image} alt={background_image} layoutId={`image ${props.pathId}`} />
+                        </Media>
                 
-                    <Description>
-                        <p>{description_raw}</p>
-                    </Description>
+                        <Description>
+                            <p>{description_raw}</p>
+                        </Description>
                 
-                    <Gallery>
-                        {screenshots.map((screenshot) => (
-                            <img src={screenshot.image} key={screenshot.id} alt={screenshot.image} />
-                        ))}
-                    </Gallery>
+                        <Gallery>
+                            {screenshots.map((screenshot) => (
+                                <img src={screenshot.image} key={screenshot.id} alt={screenshot.image} />
+                            ))}
+                        </Gallery>
                 
-                </Details>
-
+                    </Details>
+                }
             </Shadow>
-            }
         </>    
     )
 }

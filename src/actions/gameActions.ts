@@ -16,14 +16,21 @@ export type Game = {
 export type FetchGamesAction = {
     type: actionTypes.fetchGames,
     payload: {
-         popular: Game[],
-         upcoming: Game[],
-         newGames: Game[]
+        popular: Game[],
+        upcoming: Game[],
+        newGames: Game[]
     }
 }
 
+export type LoadingGamesAction = {
+    type: actionTypes.loadingGames,
+}
+
+
 export const fetchGames = () => {
     return async function (dispatch: Dispatch) {
+
+        dispatch<LoadingGamesAction>({ type: actionTypes.loadingGames });
         
         const popularGames = await axios.get(getPopularGamesURL());
         const upcomingGames = await axios.get(getUpcomingGamesURL());

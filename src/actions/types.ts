@@ -3,5 +3,7 @@ export enum actionTypes {
     fetchGameDetails,
     loadingGameDetails,
     searchGames,
-    clearSearchResults
+    clearSearchResults,
+    loadingGames,
+    loadingSearchedGames
 }
