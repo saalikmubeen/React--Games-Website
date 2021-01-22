@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { useTypedSelector } from '../reducers';
 import Rating from './Rating';
 
@@ -28,10 +29,15 @@ const getPlatform = (platform: string) => {
         default:
             return gamepad;
     }
-  };
+};
+  
+
+interface GameDetailsProps {
+    pathId: string
+}
 
 
-const GameDetails = (): JSX.Element => {
+const GameDetails: React.FC<GameDetailsProps> = (props): JSX.Element => {
     const history = useHistory();
 
     const { name, isLoading, released, description_raw, background_image, rating, platforms, screenshots } = useTypedSelector((state) => state.gameDetails);
@@ -44,16 +50,16 @@ const GameDetails = (): JSX.Element => {
     return (
         <>
         {!isLoading && 
-            <Shadow className="shadow">
+            <Shadow className="shadow" >
 
                 <Exit onClick={handleClick}>&times;</Exit>
-                <Details>
+                <Details layoutId={props.pathId}>
                 
                     <Stats>
                     
                         <div>
-                            <h3>{name}</h3>
-                            <h4>{released}</h4>
+                            <motion.h3 layoutId={`title ${props.pathId}`}>{name}</motion.h3>
+                            <motion.h4 layoutId={`released ${props.pathId}`}>{released}</motion.h4>
                             <Rating rating={rating} />
                             <span>({rating})</span>
                         </div>
@@ -70,7 +76,7 @@ const GameDetails = (): JSX.Element => {
                     </Stats>
                 
                     <Media>
-                        <img src={background_image} alt={background_image} />
+                        <motion.img src={background_image} alt={background_image} layoutId={ `image ${props.pathId}`}/>
                     </Media>
                 
                     <Description>
@@ -92,7 +98,7 @@ const GameDetails = (): JSX.Element => {
 }
 
 
-const Shadow = styled.div`
+const Shadow = styled(motion.div)`
     width: 100%;
     position: fixed;
     top: 0;
@@ -126,7 +132,7 @@ const Exit = styled.span`
 
 `
 
-const Details = styled.div`
+const Details = styled(motion.div)`
     width: 80%;
     background: white;
     border-radius: 1rem;
@@ -140,7 +146,7 @@ const Details = styled.div`
     }
 `
 
-const Stats = styled.div`
+const Stats = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -150,7 +156,7 @@ const Stats = styled.div`
     }
 `
 
-const Platforms = styled.div`
+const Platforms = styled(motion.div)`
     text-align: center;
 
     div{
@@ -164,7 +170,7 @@ const Platforms = styled.div`
     }
 `
 
-const Media = styled.div`
+const Media = styled(motion.div)`
     margin-top: 5rem;
 
     img{
@@ -172,13 +178,13 @@ const Media = styled.div`
     }
 `
 
-const Gallery = styled.div`
+const Gallery = styled(motion.div)`
     img{
         margin: 5rem 0;
     }
 `
 
-const Description = styled.div`
+const Description = styled(motion.div)`
      margin: 5rem 0rem;
 `
 

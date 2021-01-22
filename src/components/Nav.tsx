@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import logo from '../images/logo.svg';
 import { searchGames, clearSearch } from '../actions/searchGamesAction';
+
+const NavVariants = {
+    hidden: { opacity: 0, y: -400 },
+    visible: { opacity: 1, y: 0, transition: {duration: 0.9}}
+}
+
 
 const Nav = (): JSX.Element => {
     const [name, setName] = useState<string>('');
@@ -21,7 +28,7 @@ const Nav = (): JSX.Element => {
     }
 
     return (
-        <StyledNav>
+        <StyledNav variants={NavVariants} initial="hidden" animate="visible">
             
             <Logo onClick={handleClick}>
                 <img src={logo} alt="logo"/>
@@ -38,7 +45,7 @@ const Nav = (): JSX.Element => {
 }
 
 
-const StyledNav = styled.nav`
+const StyledNav = styled(motion.nav)`
      padding: 3rem 5rem;
     width: 100%;
     display: flex;
