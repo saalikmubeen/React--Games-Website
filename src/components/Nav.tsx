@@ -42,7 +42,7 @@ const Nav = (): JSX.Element => {
             
             <Logo onClick={handleClick} whileHover={{ scale: 1.2 }} transition={{duration: 0.5}}>
                 <img src={logo} alt="logo" />
-                <h1>Ignite</h1>
+                <h1>Gameloft</h1>
             </Logo>
 
             <Search onSubmit={handleSubmit}>
@@ -56,12 +56,16 @@ const Nav = (): JSX.Element => {
 
 
 const StyledNav = styled(motion.nav)`
-     padding: 3rem 5rem;
+    padding: 3rem 5rem;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    @media screen and (max-width: 400px){
+        padding: 1.5rem 2rem;
+    }
 `;
 
 
@@ -70,12 +74,16 @@ const Logo = styled(motion.div)`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     padding: 1rem;
     cursor: pointer;
     img {
         height: 2rem;
         width: 2rem;
+    }
+
+    h1 {
+        font-family: 'Abril Fatface', cursive;
     }
 `
 
@@ -84,6 +92,19 @@ const Search = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media screen and (max-width: 1600px){
+        width: 70%;
+    }
+
+    @media screen and (max-width: 1300px){
+           width: 80%;
+    }
+
+    @media screen and (max-width: 1000px){
+           width: 100%;
+    }
+
     input {
         width: 60%;
         border: none;
@@ -93,6 +114,26 @@ const Search = styled.form`
         padding: 1rem;
         margin-top: 1rem;
         box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
+
+
+        @media screen and (max-width: 1600px){
+            width: 70%;
+        }
+
+        @media screen and (max-width: 800px){
+            width: 80%;
+        }
+
+        @media screen and (max-width: 600px){
+            width: 100%;
+            font-size: 1.2rem;
+            padding: .7rem;
+        }
+
+        @media screen and (max-width: 600px){
+            font-size: 1rem;
+            padding: .4rem;
+        }
 
     }
 
@@ -105,6 +146,11 @@ const Search = styled.form`
         background: #ff7676;
         color: white;
         outline: none;
+
+        @media screen and (max-width: 600px){
+            font-size: 1.2rem;
+            padding: 0.3rem 1.5rem;
+        }
     }
 `
 

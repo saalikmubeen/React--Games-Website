@@ -66,7 +66,16 @@ const Card = styled(motion.div)`
         height: 40vh;
         object-fit: cover;
         display: block;
+
+        @media screen and (max-width: 950px){
+            height: 30vh;
+        }
+
+        @media screen and (max-width: 811px){
+            height: 40vh;
+        }
     }
+
 `
 
 

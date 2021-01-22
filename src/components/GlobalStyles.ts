@@ -27,16 +27,44 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Abril Fatface', cursive;
         font-weight: lighter;
         color: #333;
+
+        
+        @media screen and (max-width: 1600px){
+            font-size: 2.5rem;
+        }
+
+        
+        @media screen and (max-width: 1000px){
+            font-size: 2rem;
+        }
+
+        @media screen and (max-width: 600px){
+            font-size: 1.5rem;
+        }
     }
     h3{
         font-size: 1.3rem;
         color: #333;
         padding: 1.5rem 0rem;
+
+        @media screen and (max-width: 600px){
+            padding: 1rem 0;
+            font-size: 1rem;
+        }
     }
     p{
         font-size: 1.2rem;
         line-height: 200%;
         color: #696969;
+
+        @media screen and (max-width: 1000px){
+            line-height: 150%;
+        }
+
+        @media screen and (max-width: 650px){
+            line-height: 120%;
+            font-size: 1.1rem;
+        }
     }
     a{
         text-decoration: none;

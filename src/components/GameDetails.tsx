@@ -142,7 +142,20 @@ const Exit = styled.span`
     font-size: 6rem;
     cursor: pointer;
     color: #b3e6f5;
+    z-index: 20;
     
+    @media screen and (max-width: 900px){
+        font-size: 4rem;
+        right: 1.5rem;
+    }
+
+    @media screen and (max-width: 600px){
+        right: 1.2rem;
+    }
+    
+    @media screen and (max-width: 400px){
+       color: black;
+    }
 
 `
 
@@ -155,6 +168,18 @@ const Details = styled(motion.div)`
     padding: 2rem 7rem;
     z-index: 10;
 
+    @media screen and (max-width: 900px){
+        padding: 2rem 3rem;
+    }
+
+    @media screen and (max-width: 600px){
+        padding: 1.5rem 2rem;
+    }
+
+     @media screen and (max-width: 400px){
+        padding: 1rem;
+    }
+
     img{ 
         width: 100%;
     }
@@ -165,8 +190,19 @@ const Stats = styled(motion.div)`
     align-items: center;
     justify-content: space-between;
 
+    @media screen and (max-width: 950px){
+        flex-direction: column;
+        text-align: center;
+    }
+
     div span {
         margin-left: 5px;
+    }
+
+    div h3 {
+        @media screen and (max-width: 1300px){
+            font-size: 1.2rem;
+        }
     }
 `
 
@@ -180,6 +216,29 @@ const Platforms = styled(motion.div)`
 
         img {
             margin-left: 3rem;
+
+            @media screen and (max-width: 1300px){
+                margin-left: 1.5rem;
+            }
+
+            @media screen and (max-width: 1100px){
+                margin-left: 1.5rem;
+                width: 2rem;
+                height: 2rem;
+            }
+            
+            @media screen and (max-width: 500px){
+                margin-left: 1.1rem;
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+
+            @media screen and (max-width: 400px){
+                margin-left: 1rem;
+                width: 1.2rem;
+                height: 1.1rem;
+            }
+
         }
     }
 `
@@ -195,11 +254,19 @@ const Media = styled(motion.div)`
 const Gallery = styled(motion.div)`
     img{
         margin: 5rem 0;
+
+        @media screen and (max-width: 900px){
+            margin: 2rem 0;
+        }
     }
 `
 
 const Description = styled(motion.div)`
      margin: 5rem 0rem;
+
+    @media screen and (max-width: 1100px){
+        margin: 2rem 0rem;
+    }
 `
 
 export default GameDetails;
