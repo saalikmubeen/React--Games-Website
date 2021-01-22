@@ -8,6 +8,8 @@ import { fetchGames } from '../actions/gameActions';
 import GameCard from '../components/GameCard';
 import GameDetails from '../components/GameDetails';
 
+import { useScroll } from '../useScroll';
+
 
 const titleVariants = {
     hidden: { opacity: 0, x: -400 },
@@ -19,9 +21,11 @@ const titleVariants = {
 const HomePage = (): JSX.Element => {
     const dispatch = useDispatch();
     const { pathname } = useLocation();
-
     const pathId = pathname.split("/")[2];
 
+    const { element, controls } = useScroll()
+    const {element: element2, controls: controls2} = useScroll()
+    
 
     const { popular, upcoming, newGames, searched } = useTypedSelector((state) => state.games);
 
@@ -57,7 +61,7 @@ const HomePage = (): JSX.Element => {
             
                 {upcoming.length > 0 &&
             <>
-            <h2>Upcoming Games</h2>
+            <motion.h2 animate={controls} ref={element} variants={titleVariants}>Upcoming Games</motion.h2>
             <Game>
                 {upcoming.map((game) => <GameCard game={game} key={game.id} />)}
             </Game>
@@ -66,7 +70,7 @@ const HomePage = (): JSX.Element => {
 
                 {newGames.length > 0 &&
             <>        
-            <h2>New Games</h2>
+            <motion.h2 animate={controls2} ref={element2} variants={titleVariants}>New Games</motion.h2>
             <Game>
                 {newGames.map((game) => <GameCard game={game} key={game.id} />)}
             </Game>    
